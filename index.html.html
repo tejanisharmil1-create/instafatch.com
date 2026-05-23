@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaFetch - Premium Video & Photo Downloader</title>
+    <style>
+        /* --- Color Variables & Reset --- */
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --active-bg: #f4f5fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: direction 0.3s ease;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header --- */
+        header {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-links { display: flex; gap: 20px; font-weight: 500; align-items: center; }
+        .header-links > a:hover { color: var(--primary-color); }
+
+        /* --- Language Dropdown Styles --- */
+        .language-dropdown { position: relative; display: inline-block; }
+        .lang-btn { background: none; border: none; font-size: 16px; font-weight: 600; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; gap: 5px; transition: color 0.2s; }
+        .lang-btn:hover { color: var(--primary-color); }
+        .lang-btn span { font-size: 12px; }
+
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            background-color: var(--white);
+            min-width: 340px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            z-index: 1000;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            border: 1px solid var(--border-color);
+            margin-top: 15px;
+        }
+
+        body[dir="ltr"] .lang-menu { right: 0; }
+        body[dir="rtl"] .lang-menu { left: 0; right: auto; }
+
+        .lang-menu.show { display: grid; animation: fadeIn 0.2s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .lang-menu a { text-decoration: none; color: var(--text-dark); padding: 12px 15px; border-radius: 8px; transition: all 0.2s; font-size: 15px; font-weight: 500; }
+        .lang-menu a:hover { background-color: var(--bg-color); }
+        .lang-menu a.active { background-color: var(--active-bg); color: var(--primary-color); font-weight: 600; }
+
+        /* --- Hero Section --- */
+        .hero { text-align: center; padding: 80px 20px 60px; background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%); }
+        .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; color: var(--text-dark); }
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
+
+        /* --- Input Box --- */
+        .search-box { max-width: 800px; margin: 0 auto; display: flex; background: var(--white); border-radius: 50px; padding: 8px; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1); border: 1px solid var(--border-color); transition: all 0.3s; }
+        .search-box:focus-within { border-color: var(--primary-color); box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2); }
+        .search-box input { flex: 1; border: none; outline: none; padding: 15px 25px; font-size: 16px; border-radius: 50px; background: transparent; }
+        .paste-btn, .download-btn { border: none; font-weight: 600; font-size: 16px; cursor: pointer; border-radius: 40px; transition: all 0.2s; }
+        
+        body[dir="ltr"] .paste-btn { margin-right: 10px; }
+        body[dir="rtl"] .paste-btn { margin-left: 10px; margin-right: 0; }
+
+        .paste-btn { background: #f1f5f9; color: var(--text-dark); padding: 0 20px; }
+        .paste-btn:hover { background: #e2e8f0; }
+        .download-btn { background: var(--primary-color); color: var(--white); padding: 0 35px; }
+        .download-btn:hover { background: var(--primary-hover); }
+
+        /* --- Rest of Content Styles --- */
+        .section-title { text-align: center; font-size: 32px; margin-bottom: 40px; font-weight: 700; }
+        .steps-section, .features-section, .faq-section { padding: 80px 5%; background: var(--white); }
+        .features-section { background: var(--bg-color); }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .step-card { text-align: center; padding: 40px 20px; background: var(--bg-color); border-radius: 20px; border: 1px solid var(--border-color); }
+        .step-number { width: 50px; height: 50px; background: var(--primary-color); color: white; font-size: 24px; font-weight: bold; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1100px; margin: 0 auto; }
+        
+        body[dir="ltr"] .feature-item { border-left: 4px solid var(--primary-color); border-right: none; }
+        body[dir="rtl"] .feature-item { border-right: 4px solid var(--primary-color); border-left: none; }
+        
+        .feature-item { background: var(--white); padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        details { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 15px; }
+        summary { padding: 20px; font-size: 18px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 24px; color: var(--primary-color); }
+        details[open] summary::after { content: '-'; }
+        details p { padding: 0 20px 20px; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 10px; padding-top: 15px; }
+        
+        footer { background: var(--text-dark); color: var(--white); text-align: center; padding: 40px 20px; }
+        .footer-links { margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+        .footer-links a { color: #cbd5e1; font-size: 14px; }
+        .footer-links a:hover { color: var(--white); text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .search-box { flex-direction: column; border: none; padding: 15px; box-shadow: none; background: transparent; }
+            .search-box input { background: var(--white); margin-bottom: 10px; border: 1px solid var(--border-color); }
+            body[dir="ltr"] .paste-btn, body[dir="rtl"] .paste-btn { margin: 0 0 10px 0; }
+            .paste-btn, .download-btn { width: 100%; padding: 15px; }
+            body[dir="ltr"] .lang-menu { left: -50px; right: auto; min-width: 300px; }
+            body[dir="rtl"] .lang-menu { right: -50px; left: auto; min-width: 300px; }
+        }
+    </style>
+</head>
+<body dir="ltr"> 
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="InstaFetch Logo"></a>
+        </div>
+        <div class="header-links">
+            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+            
+            <div class="language-dropdown">
+                <button class="lang-btn" id="currentLangBtn" onclick="toggleLangMenu()">
+                    EN <span>▼</span>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <a href="#" data-lang="AR">العربية</a> 
+                    <a href="#" data-lang="BHO">भोजपुरी</a>
+                    <a href="#" data-lang="CS">Čeština</a> 
+                    <a href="#" data-lang="DE">Deutsch</a>
+                    <a href="#" data-lang="EN" class="active">English</a> 
+                    <a href="#" data-lang="ES">Español</a>
+                    <a href="#" data-lang="FA">فارسی</a> 
+                    <a href="#" data-lang="FR">Français</a>
+                    <a href="#" data-lang="HI">हिन्दी</a> 
+                    <a href="#" data-lang="IT">Italiano</a>
+                    <a href="#" data-lang="JA">日本語</a> 
+                    <a href="#" data-lang="KO">한국어</a>
+                    <a href="#" data-lang="NL">Nederlands</a> 
+                    <a href="#" data-lang="PL">Polski</a>
+                    <a href="#" data-lang="PT">Português</a> 
+                    <a href="#" data-lang="RO">Română</a>
+                    <a href="#" data-lang="RU">Русский</a> 
+                    <a href="#" data-lang="SK">Slovenčina</a>
+                    <a href="#" data-lang="SV">Svenska</a> 
+                    <a href="#" data-lang="TR">Türkçe</a>
+                    <a href="#" data-lang="VI">Tiếng Việt</a> 
+                    <a href="#" data-lang="ZH">中文</a>
+                    <a href="#" data-lang="ID">Bahasa Indonesia</a> 
+                    <a href="#" data-lang="MS">Bahasa Melayu</a>
+                    <a href="#" data-lang="TH">ไทย / Phasa Thai</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 data-i18n="hero_title">Download Instagram Content Instantly</h1>
+        <p data-i18n="hero_desc">Your premium, fast, and free tool to download Instagram Videos, Reels, Photos, Stories, and IGTV directly to your device.</p>
+        <form class="search-box" id="downloadForm">
+            <input type="text" id="urlInput" data-i18n-placeholder="input_placeholder" placeholder="Paste Instagram link here..." required>
+            <button type="button" class="paste-btn" data-i18n="paste_btn">Paste</button>
+            <button type="submit" class="download-btn" data-i18n="download_btn">Download</button>
+        </form>
+    </section>
+
+    <section class="steps-section">
+        <h2 class="section-title" data-i18n="steps_title">How to download from Instagram?</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 data-i18n="step1_title">Copy the URL</h3>
+                <p data-i18n="step1_desc">Open the Instagram app or website, find the video or photo you want, and copy its link.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 data-i18n="step2_title">Paste the Link</h3>
+                <p data-i18n="step2_desc">Come back to our website, paste the copied link into the search box above.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 data-i18n="step3_title">Hit Download</h3>
+                <p data-i18n="step3_desc">Click the download button and choose your preferred quality. It saves instantly!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title" data-i18n="features_title">Why choose InstaFetch?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4 data-i18n="feat1_title">🚀 Lightning Fast</h4>
+                <p data-i18n="feat1_desc">Our dedicated servers ensure that you get your downloads in just a few seconds without any wait time.</p>
+            </div>
+            <div class="feature-item">
+                <h4 data-i18n="feat2_title">📱 Supports All Devices</h4>
+                <p data-i18n="feat2_desc">Whether you use Android, iOS, Windows, or Mac, our web app works perfectly everywhere.</p>
+            </div>
+            <div class="feature-item">
+                <h4 data-i18n="feat3_title">🔒 100% Secure</h4>
+                <p data-i18n="feat3_desc">We respect your privacy. No login required, and we don't save your download history.</p>
+            </div>
+            <div class="feature-item">
+                <h4 data-i18n="feat4_title">✨ Original Quality</h4>
+                <p data-i18n="feat4_desc">We fetch the files directly from Instagram servers to ensure you get the absolute best original quality.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <details>
+                <summary data-i18n="faq1_q">Is this tool free to use?</summary>
+                <p data-i18n="faq1_a">Yes, InstaFetch is 100% free. You can download as many videos, reels, and photos as you want without any hidden charges or limits.</p>
+            </details>
+            <details>
+                <summary data-i18n="faq2_q">Do I need to install any app?</summary>
+                <p data-i18n="faq2_a">No installation is required. This is a cloud-based web tool. You just need a web browser and an internet connection to use it.</p>
+            </details>
+            <details>
+                <summary data-i18n="faq3_q">Where are my downloaded files saved?</summary>
+                <p data-i18n="faq3_a">By default, files are saved in the "Downloads" folder of your browser. If you are on a mobile device, check your Gallery or Files app.</p>
+            </details>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 10px;">
+            <img src="logo.png" alt="InstaFetch Logo">
+        </div>
+        <p data-i18n="footer_copy">&copy; 2026 InstaFetch Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="dmca.html">DMCA Disclaimer</a>
+        </div>
+    </footer>
+
+    <script>
+        // MASSIVE TRANSLATION DICTIONARY
+        const translations = {
+            EN: {
+                nav_faq: "FAQ", hero_title: "Download Instagram Content Instantly", hero_desc: "Your premium, fast, and free tool to download Instagram Videos, Reels, Photos, Stories, and IGTV directly to your device.",
+                input_placeholder: "Paste Instagram link here...", paste_btn: "Paste", download_btn: "Download",
+                steps_title: "How to download from Instagram?", step1_title: "Copy the URL", step1_desc: "Open the Instagram app or website, find the video or photo you want, and copy its link.",
+                step2_title: "Paste the Link", step2_desc: "Come back to our website, paste the copied link into the search box above.", step3_title: "Hit Download", step3_desc: "Click the download button and choose your preferred quality. It saves instantly!",
+                features_title: "Why choose InstaFetch?", feat1_title: "🚀 Lightning Fast", feat1_desc: "Our dedicated servers ensure that you get your downloads in just a few seconds without any wait time.",
+                feat2_title: "📱 Supports All Devices", feat2_desc: "Whether you use Android, iOS, Windows, or Mac, our web app works perfectly everywhere.",
+                feat3_title: "🔒 100% Secure", feat3_desc: "We respect your privacy. No login required, and we don't save your download history.",
+                feat4_title: "✨ Original Quality", feat4_desc: "We fetch the files directly from Instagram servers to ensure you get the absolute best original quality.",
+                faq_title: "Frequently Asked Questions", faq1_q: "Is this tool free to use?", faq1_a: "Yes, InstaFetch is 100% free. You can download as many videos, reels, and photos as you want without any hidden charges or limits.",
+                faq2_q: "Do I need to install any app?", faq2_a: "No installation is required. This is a cloud-based web tool. You just need a web browser and an internet connection to use it.",
+                faq3_q: "Where are my downloaded files saved?", faq3_a: "By default, files are saved in the 'Downloads' folder of your browser. If you are on a mobile device, check your Gallery or Files app.",
+                footer_copy: "© 2026 InstaFetch Tool. All rights reserved."
+            },
+            HI: {
+                nav_faq: "सामान्य प्रश्न", hero_title: "इंस्टाग्राम कंटेंट तुरंत डाउनलोड करें", hero_desc: "इंस्टाग्राम वीडियो, रील्स, फोटो और स्टोरीज को सीधे अपने डिवाइस पर डाउनलोड करने का आपका प्रीमियम और मुफ्त टूल।",
+                input_placeholder: "इंस्टाग्राम लिंक यहाँ पेस्ट करें...", paste_btn: "पेस्ट करें", download_btn: "डाउनलोड",
+                steps_title: "इंस्टाग्राम से डाउनलोड कैसे करें?", step1_title: "यूआरएल (URL) कॉपी करें", step1_desc: "इंस्टाग्राम ऐप या वेबसाइट खोलें, वह वीडियो या फोटो ढूंढें जिसे आप चाहते हैं, और उसका लिंक कॉपी करें।",
+                step2_title: "लिंक पेस्ट करें", step2_desc: "हमारी वेबसाइट पर वापस आएं, कॉपी किए गए लिंक को ऊपर दिए गए सर्च बॉक्स में पेस्ट करें।", step3_title: "डाउनलोड पर क्लिक करें", step3_desc: "डाउनलोड बटन पर क्लिक करें और अपनी पसंद की क्वालिटी चुनें। यह तुरंत सेव हो जाता है!",
+                features_title: "InstaFetch क्यों चुनें?", feat1_title: "🚀 बिजली जैसी तेज", feat1_desc: "हमारे सर्वर यह सुनिश्चित करते हैं कि आपको बिना किसी प्रतीक्षा के कुछ ही सेकंड में डाउनलोड मिल जाए।",
+                feat2_title: "📱 सभी डिवाइस पर चलता है", feat2_desc: "चाहे आप Android, iOS, Windows या Mac का उपयोग करें, यह टूल हर जगह काम करता है।",
+                feat3_title: "🔒 100% सुरक्षित", feat3_desc: "हम आपकी निजता का सम्मान करते हैं। कोई लॉगिन आवश्यक नहीं है और हम आपकी हिस्ट्री सेव नहीं करते।",
+                feat4_title: "✨ ओरिजिनल क्वालिटी", feat4_desc: "आपको सर्वोत्तम ओरिजinal क्वालिटी देने के लिए हम सीधे इंस्टाग्राम के सर्वर से फाइल लाते हैं।",
+                faq_title: "अक्सर पूछे जाने वाले प्रश्न (FAQ)", faq1_q: "क्या यह टूल मुफ़्त है?", faq1_a: "हाँ, यह 100% मुफ़्त है। आप बिना किसी छिपे हुए शुल्क के असीमित वीडियो और रील्स डाउनलोड कर सकते हैं।",
+                faq2_q: "क्या मुझे कोई ऐप इंस्टॉल करना होगा?", faq2_a: "किसी इंस्टॉलेशन की आवश्यकता नहीं है। बस एक वेब ब्राउज़र और इंटरनेट कनेक्शन की आवश्यकता है।",
+                faq3_q: "मेरी डाउनलोड की गई फाइलें कहाँ सेव होती हैं?", faq3_a: "डिफ़ॉल्ट रूप से फाइलें 'Downloads' फ़ोल्डर में सेव होती हैं। मोबाइल पर अपनी गैलरी या फ़ाइल मैनेजर देखें।",
+                footer_copy: "© 2026 InstaFetch टूल. सर्वाधिकार सुरक्षित।"
+            },
+            BHO: {
+                nav_faq: "सवाल-जवाब", hero_title: "इंस्टाग्राम वीडियो तुरंत डाउनलोड करीं", hero_desc: "इंस्टाग्राम वीडियो, रील्स, फोटो अउरी कहानी सीधे अपना मोबाइल पर डाउनलोड करे के एकदम फ्री टूल।",
+                input_placeholder: "इंस्टाग्राम लिंक एहिजा पेस्ट करीं...", paste_btn: "पेस्ट करीं", download_btn: "डाउनलोड",
+                steps_title: "इंस्टाग्राम से कइसे डाउनलोड कइल जाला?", step1_title: "लिंक कॉपी करीं", step1_desc: "इंस्टाग्राम ऐप खोल के जवन वीडियो पसंद होखे ओकर लिंक कॉपी क लिहीं।",
+                step2_title: "लिंक पेस्ट करीं", step2_desc: "हमार वेबसाइट पर वापस आईं, अउरी बॉक्स में लिंक पेस्ट करीं।", step3_title: "डाउनलोड करीं", step3_desc: "डाउनलोड बटन दबाईं अउरी वीडियो सीधे गैलरी में सेव क लिहीं!",
+                features_title: "InstaFetch काहे चुनीं?", feat1_title: "🚀 बहुत ही तेज", feat1_desc: "हमार सर्वर से रउआ बिना इंतजार कइले कुछ ही सेकंड में डाउनलोड मिल जाला।",
+                feat2_title: "📱 सब मोबाइल पर चलेला", feat2_desc: "रउआ एंड्रॉइड, आईओएस, या कंप्यूटर चलावत होखीं, ई हर जगह बढ़िया काम करेला।",
+                feat3_title: "🔒 100% सुरक्षित", feat3_desc: "केहू लॉगिन के जरूरत नईखे अउरी हमनी रउआ जानकारी सेव ना करीला।",
+                feat4_title: "✨ असली क्वालिटी", feat4_desc: "रउआ बढ़िया क्वालिटी देवे खातिर इंस्टाग्राम के सर्वर से सीधा फाइल लावेनी जा।",
+                faq_title: "अक्सर पुछल जाये वाला सवाल", faq1_q: "का ई टूल फ्री बा?", faq1_a: "हां, ई 100% फ्री बा। रउआ जतना मन करे ओतना वीडियो डाउनलोड क सकत बानी।",
+                faq2_q: "का कवनो ऐप इंस्टॉल करे के परी?", faq2_a: "ना, कवनो ऐप के जरूरत नईखे। खाली इंटरनेट अउरी ब्राउज़र चाहीं।",
+                faq3_q: "डाउनलोड भइल वीडियो कहां जाला?", faq3_a: "ई सीधे रउआ फोन के गैलरी या डाउनलोड फोल्डर में सेव हो जाला।",
+                footer_copy: "© 2026 InstaFetch. सब अधिकार सुरक्षित बा।"
+            },
+            AR: {
+                nav_faq: "الأسئلة الشائعة", hero_title: "قم بتنزيل محتوى إنستغرام على الفور", hero_desc: "أداتك السريعة والمجانية لتنزيل الفيديوهات، الريلز، الصور، والقصص مباشرة إلى جهازك.",
+                input_placeholder: "ألصق رابط إنستغرام هنا...", paste_btn: "لصق", download_btn: "تنزيل",
+                steps_title: "كيفية التنزيل من إنستغرام؟", step1_title: "انسخ الرابط", step1_desc: "افتح تطبيق إنستغرام، وابحث عن الفيديو أو الصورة، وانسخ الرابط.",
+                step2_title: "ألصق الرابط", step2_desc: "عُد إلى موقعنا وألصق الرابط المنسوخ في مربع البحث.", step3_title: "اضغط تنزيل", step3_desc: "انقر على زر التنزيل، وسيتم الحفظ فوراً!",
+                features_title: "لماذا تختار InstaFetch؟", feat1_title: "🚀 سريع كالبرق", feat1_desc: "خوادمنا تضمن حصولك على التنزيلات في ثوانٍ.",
+                feat2_title: "📱 يدعم كل الأجهزة", feat2_desc: "يعمل بشكل مثالي على أندرويد، أيفون، وويندوز.",
+                feat3_title: "🔒 آمن 100%", feat3_desc: "لا حاجة لتسجيل الدخول ونحن لا نحفظ سجل تنزيلاتك.",
+                feat4_title: "✨ جودة أصلية", feat4_desc: "نحضر الملفات مباشرة بجودتها الأصلية القصوى.",
+                faq_title: "الأسئلة المتداولة", faq1_q: "هل الأداة مجانية؟", faq1_a: "نعم، إنها مجانية 100٪ بدون حدود.",
+                faq2_q: "هل أحتاج لتثبيت تطبيق؟", faq2_a: "لا، تعمل الأداة مباشرة من المتصفح.",
+                faq3_q: "أين تُحفظ الملفات؟", faq3_a: "في مجلد 'التنزيلات' أو معرض الصور بهاتفك.",
+                footer_copy: "© 2026 InstaFetch. جميع الحقوق محفوظة."
+            },
+            ES: {
+                nav_faq: "Preguntas Frecuentes", hero_title: "Descarga contenido de Instagram al instante", hero_desc: "Tu herramienta rápida y gratuita para descargar Videos, Reels, Fotos y Stories de Instagram.",
+                input_placeholder: "Pega el enlace de Instagram aquí...", paste_btn: "Pegar", download_btn: "Descargar",
+                steps_title: "¿Cómo descargar de Instagram?", step1_title: "Copia la URL", step1_desc: "Abre la aplicación de Instagram y copia el enlace del video o foto.",
+                step2_title: "Pega el enlace", step2_desc: "Vuelve a nuestra web y pega el enlace en el cuadro de búsqueda.", step3_title: "Haz clic en Descargar", step3_desc: "Elige la calidad y se guardará al instante.",
+                features_title: "¿Por qué elegir InstaFetch?", feat1_title: "🚀 Ultra Rápido", feat1_desc: "Nuestros servidores te entregan el archivo en segundos.",
+                feat2_title: "📱 Todos los dispositivos", feat2_desc: "Funciona perfecto en Android, iOS, Windows y Mac.",
+                feat3_title: "🔒 100% Seguro", feat3_desc: "Sin registros y no guardamos tu historial.",
+                feat4_title: "✨ Calidad Original", feat4_desc: "Obtenemos la máxima calidad directamente de los servidores de Instagram.",
+                faq_title: "Preguntas Frecuentes", faq1_q: "¿Es gratis?", faq1_a: "Sí, es 100% gratis y sin límites.",
+                faq2_q: "¿Necesito instalar una app?", faq2_a: "No, todo funciona desde tu navegador web.",
+                faq3_q: "¿Dónde se guardan los archivos?", faq3_a: "En tu carpeta de Descargas o en la Galería de tu móvil.",
+                footer_copy: "© 2026 InstaFetch. Todos los derechos reservados."
+            },
+            ID: {
+                nav_faq: "FAQ", hero_title: "Unduh Konten Instagram Seketika", hero_desc: "Alat gratis dan cepat untuk mengunduh Video, Reels, Foto, dan Cerita Instagram.",
+                input_placeholder: "Tempel tautan Instagram di sini...", paste_btn: "Tempel", download_btn: "Unduh",
+                steps_title: "Bagaimana cara mengunduh?", step1_title: "Salin Tautan", step1_desc: "Buka Instagram dan salin tautan video/foto.",
+                step2_title: "Tempel Tautan", step2_desc: "Kembali ke sini dan tempel di kotak pencarian.", step3_title: "Klik Unduh", step3_desc: "Pilih kualitas dan simpan langsung ke HP Anda.",
+                features_title: "Mengapa memilih kami?", feat1_title: "🚀 Sangat Cepat", feat1_desc: "Server kami memberikan unduhan dalam hitungan detik.",
+                feat2_title: "📱 Semua Perangkat", feat2_desc: "Berfungsi di Android, iOS, dan PC.",
+                feat3_title: "🔒 100% Aman", feat3_desc: "Tanpa login, privasi Anda terjaga.",
+                feat4_title: "✨ Kualitas Asli", feat4_desc: "Kami mengambil file asli dengan resolusi terbaik.",
+                faq_title: "Pertanyaan yang Sering Diajukan", faq1_q: "Apakah ini gratis?", faq1_a: "Ya, 100% gratis tanpa batasan.",
+                faq2_q: "Perlu aplikasi tambahan?", faq2_a: "Tidak perlu, cukup gunakan browser web Anda.",
+                faq3_q: "Di mana file disimpan?", faq3_a: "Cek folder Unduhan atau Galeri HP Anda.",
+                footer_copy: "© 2026 InstaFetch. Hak cipta dilindungi."
+            }
+        };
+
+        function toggleLangMenu() {
+            document.getElementById("langMenu").classList.toggle("show");
+        }
+
+        const langOptions = document.querySelectorAll('.lang-menu a');
+        const currentLangBtn = document.getElementById('currentLangBtn');
+        const urlInput = document.getElementById('urlInput');
+
+        langOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                const shortLangCode = this.getAttribute('data-lang');
+                const langData = translations[shortLangCode] || translations['EN']; 
+                
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+
+                currentLangBtn.innerHTML = `${shortLangCode} <span>▼</span>`;
+
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (langData[key]) {
+                        element.innerText = langData[key];
+                    }
+                });
+
+                const placeholderKey = urlInput.getAttribute('data-i18n-placeholder');
+                if (langData[placeholderKey]) {
+                    urlInput.placeholder = langData[placeholderKey];
+                }
+
+                if (shortLangCode === 'AR' || shortLangCode === 'FA') {
+                    document.body.setAttribute('dir', 'rtl');
+                } else {
+                    document.body.setAttribute('dir', 'ltr');
+                }
+
+                document.getElementById("langMenu").classList.remove("show");
+            });
+        });
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn') && !event.target.closest('.lang-btn')) {
+                var dropdowns = document.getElementsByClassName("lang-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // --- Backend API Connection Code ---
+        document.querySelector('.search-box').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const urlInput = document.getElementById('urlInput').value;
+            const downloadBtn = document.querySelector('.download-btn');
+            
+            if(!urlInput.includes('instagram.com')) {
+                alert('Please enter a valid Instagram URL!');
+                return;
+            }
+
+            // Button Loading State
+            const originalText = downloadBtn.innerText;
+            downloadBtn.innerText = "Fetching...";
+            downloadBtn.disabled = true;
+
+            try {
+                // તારા લોકલ પાયથોન સર્વર પર લિંક મોકલો
+                const response = await fetch(`http://127.0.0.1:8000/api/download?url=${encodeURIComponent(urlInput)}`);
+                const data = await response.json();
+
+                if (data.status === "success") {
+                    // વિડીયો ડાયરેક્ટ નવા ટેબમાં ઓપન કરો/ડાઉનલોડ કરો
+                    window.open(data.download_url, '_blank');
+                } else {
+                    alert('Error: ' + data.detail);
+                }
+            } catch (error) {
+                alert('Server is down or unreachable. Make sure Python server is running.');
+            } finally {
+                // Button પાછું નોર્મલ કરો
+                downloadBtn.innerText = originalText;
+                downloadBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

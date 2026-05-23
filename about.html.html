@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - InstaFetch</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --active-bg: #f4f5fa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        header { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+        .logo img { height: 40px; width: auto; object-fit: contain; }
+        .header-links { display: flex; gap: 20px; font-weight: 500; align-items: center; }
+        .header-links > a:hover { color: var(--primary-color); }
+        .legal-page-container { max-width: 900px; margin: 50px auto; padding: 40px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03); border: 1px solid var(--border-color); }
+        .legal-page-container h1 { font-size: 32px; color: var(--text-dark); margin-bottom: 20px; border-bottom: 2px solid var(--active-bg); padding-bottom: 12px; font-weight: 800; }
+        .legal-page-container h2 { font-size: 22px; color: var(--primary-color); margin: 30px 0 15px; font-weight: 700; }
+        .legal-page-container p, .legal-page-container li { font-size: 15px; color: var(--text-muted); margin-bottom: 15px; line-height: 1.8; }
+        .legal-page-container ul { margin-left: 25px; margin-bottom: 15px; }
+        footer { background: var(--text-dark); color: var(--white); text-align: center; padding: 40px 20px; }
+        .footer-links { margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+        .footer-links a { color: #cbd5e1; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); text-decoration: underline; }
+        @media (max-width: 768px) { .legal-page-container { margin: 25px 15px; padding: 25px; } .legal-page-container h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html"><img src="logo.png" alt="InstaFetch Logo"></a></div>
+        <div class="header-links"><a href="index.html">Home</a></div>
+    </header>
+    <section class="legal-page-container">
+        <h1>About InstaFetch</h1>
+        <p><strong>Premium, Secure, and Blazing-Fast Media Downloader</strong></p>
+        <p>Welcome to <strong>InstaFetch</strong>, a state-of-the-art web application engineered to redefine how you archive public social media content. Our tool eliminates the typical hurdles associated with saving digital assets for personal, non-commercial use.</p>
+        <h2>Our Core Objectives</h2>
+        <p>The modern web is rich with educational content, creative inspiration, and high-fidelity video productions, yet local saving options remain heavily restricted. InstaFetch bridges this gap by offering a fully fluid, cloud-driven media extraction script that handles heavy calculations instantly, removing the need for complex desktop software installations.</p>
+        <h2>Why InstaFetch Stands Out</h2>
+        <ul>
+            <li><strong>Cross-Platform Fluidity:</strong> Fully responsive across Android, iOS, Windows, and Mac configurations.</li>
+            <li><strong>Security-First Architecture:</strong> Operating with complete offline transparency without tracking history or demanding registration details.</li>
+            <li><strong>Bitrate & Quality Integrity:</strong> Pulling files directly from public media pipelines to ensure no compression artifacts are introduced.</li>
+        </ul>
+        <p>If you have any inquiries, suggestions, or feedback, feel free to connect with us.</p>
+    </section>
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 10px;"><img src="logo.png" alt="InstaFetch Logo"></div>
+        <p>&copy; 2026 InstaFetch Tool. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="dmca.html">DMCA Disclaimer</a>
+        </div>
+    </footer>
+</body>
+</html>
