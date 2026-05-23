@@ -16,6 +16,7 @@ async def download_instagram(url: str):
     ydl_opts = {
         'quiet': True,
         'no_warnings': True,
+        'cookiefile': 'cookies.txt',  # કૂકીઝ ફાઈલ અહીં કનેક્ટ કરી દીધી છે
     }
 
     try:
@@ -30,7 +31,7 @@ async def download_instagram(url: str):
             if not video_url:
                 raise HTTPException(status_code=400, detail="વિડીયો લિંક મળી નહિ.")
 
-            # આ રિટર્ન ડેટા જ છે, હવે આપણે JavaScript માં ફેરફાર કરીશું
+            # આ રિટર્ન ડેટા જ છે
             return {
                 "status": "success",
                 "download_url": video_url,
