@@ -219,8 +219,10 @@
         </div>
     </section>
 
-    <!-- New 728x90 Banner Ad placed right above the footer, perfectly centered using Tailwind classes as requested -->
-    <div class="flex justify-center w-full my-8">
+    <!-- New 728x90 Banner Ad placed right above the footer.
+         Hidden on mobile (hidden) and visible from md breakpoint onwards (md:flex) 
+         to prevent horizontal scroll and bad design on small screens. -->
+    <div class="hidden md:flex justify-center w-full my-8">
         <div class="max-w-[728px]">
             <script> atOptions = { 'key' : '7bdc38d2efe5d7bebbc065e99d7e670a', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} }; </script>
             <script src="https://www.highperformanceformat.com/7bdc38d2efe5d7bebbc065e99d7e670a/invoke.js"></script>
