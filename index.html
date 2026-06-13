@@ -436,6 +436,8 @@
         }
 
         // 4. FastAPI Backend Download Logic (AJAX)
+        // Backend ki live link yahan update kar di hai (https://instafatch.com/api/download)
+        // Note: Agar aapka backend kisi aur URL par hai toh yahan change kar lena
         document.getElementById('downloadForm').addEventListener('submit', async function(e) {
             e.preventDefault(); 
 
@@ -453,8 +455,8 @@
             resultContainer.innerHTML = '';
 
             try {
-                // Fetching from your Python main.py route: /api/download?url=...
-                const response = await fetch(`/api/download?url=${encodeURIComponent(urlInput)}`);
+                // Live server API path yahan set kiya hua hai
+                const response = await fetch(`https://instafatch.com/api/download?url=${encodeURIComponent(urlInput)}`);
                 const data = await response.json();
 
                 if (response.ok && data.status === "success") {
