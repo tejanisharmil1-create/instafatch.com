@@ -56,11 +56,13 @@
             border-color: rgba(225, 48, 108, 0.5);
         }
 
+        /* Custom Scrollbar for Dropdown */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(225, 48, 108, 0.5); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(225, 48, 108, 0.8); }
 
+        /* HIDING GOOGLE TRANSLATE UGLY UI */
         #google_translate_element { display: none !important; }
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
@@ -153,12 +155,6 @@
                 </form>
                 <p class="text-sm text-gray-600 mt-4 font-medium"><i class="fa-solid fa-lock mr-1"></i> 100% Secure. No login required.</p>
                 
-                <div class="w-full flex justify-center mt-6">
-                    <script async type="application/javascript" src="https://a.pemsrv.com/ad-provider.js"></script> 
-                    <ins class="eas6a97888e33" data-zoneid="5952798"></ins> 
-                    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-                </div>
-
                 <div id="result-container" class="mt-8 hidden w-full text-left"></div>
             </div>
         </div>
@@ -440,6 +436,7 @@
         }
 
         // 4. FastAPI Backend Download Logic (AJAX)
+        // Live server API path yahan set kiya hua hai
         document.getElementById('downloadForm').addEventListener('submit', async function(e) {
             e.preventDefault(); 
 
