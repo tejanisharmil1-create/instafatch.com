@@ -408,6 +408,9 @@
         </div>
     </footer>
 
+    <ins class="eas6a97888e33" data-zoneid="5952798"></ins> 
+    <script async type="application/javascript" src="https://a.pemsrv.com/ad-provider.js"></script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
@@ -435,10 +438,16 @@
             }
         }
 
-        // 4. FastAPI Backend Download Logic (AJAX)
-        // Live server API path yahan set kiya hua hai
+        // 4. FastAPI Backend Download Logic & Ad Trigger
         document.getElementById('downloadForm').addEventListener('submit', async function(e) {
             e.preventDefault(); 
+
+            // 🚨 AD TRIGGER - Button click karte hi ad pop-up hoga 🚨
+            if (window.AdProvider) {
+                window.AdProvider.push({"serve": {}});
+            } else {
+                (window.AdProvider = window.AdProvider || []).push({"serve": {}});
+            }
 
             const urlInput = document.getElementById('ig_url_input').value;
             const submitBtn = document.getElementById('submitBtn');
