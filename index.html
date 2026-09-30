@@ -1,498 +1,737 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Video Downloader | Pro Version</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBase: '#050505',
-                        darkCard: '#111111',
-                        igPink: '#E1306C',
-                        igOrange: '#F56040',
-                        igPurple: '#833AB4'
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
-        body { 
-            font-family: 'Outfit', sans-serif; 
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        
-        .text-gradient {
-            background: linear-gradient(to right, #F56040, #E1306C, #833AB4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .bg-gradient-ig {
-            background: linear-gradient(45deg, #F56040, #E1306C, #833AB4);
-        }
-        
-        .glass-box {
-            background: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="instagram downloader, reels downloader, instagram video download, save instagram reels, download instagram photos, igtv downloader, story saver" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://onetapdownloader.com/" />
+<meta property="og:image" content="https://onetapdownloader.com/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="One Tap Downloader - Instagram Video & Reels Downloader" />
+<meta name="twitter:description" content="Download Instagram Videos, Reels, Photos, IGTV & Albums in one tap. Free, fast, no login required." />
+<link rel="canonical" href="https://onetapdownloader.com/" />
+<meta name="description" content="One Tap Downloader - Download Instagram Videos, Reels, Photos, IGTV & Albums in one tap. Fast, free, no login required." />
+<meta property="og:title" content="One Tap Downloader - Instagram Video & Photo Downloader" />
+<meta property="og:description" content="Download Instagram Videos, Reels, Photos, IGTV & Albums in one tap." />
+<meta name="theme-color" content="#7C3AED" />
+<title>One Tap Downloader - Instagram Video, Reels & Photo Downloader</title>
 
-        .glow-effect:focus-within {
-            box-shadow: 0 0 30px rgba(225, 48, 108, 0.3);
-            border-color: rgba(225, 48, 108, 0.5);
-        }
+<meta name="eroads_" content="dc2fee9574b0162bc8996f8f03f10842" />
 
-        /* Custom Scrollbar for Dropdown */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(225, 48, 108, 0.5); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(225, 48, 108, 0.8); }
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
-        /* HIDING GOOGLE TRANSLATE UGLY UI */
-        #google_translate_element { display: none !important; }
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-        .goog-logo-link { display:none !important; }
-        .goog-te-gadget { color: transparent !important; }
-        #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
-        .goog-text-highlight { background: none !important; box-shadow: none !important; }
-    </style>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #7C3AED;
+    --primary-dark: #5B21B6;
+    --primary-light: #EDE9FE;
+    --accent: #F59E0B;
+    --text: #1E1B4B;
+    --text-muted: #6B7280;
+    --bg: #FAFAFA;
+    --card: #FFFFFF;
+    --border: #E5E7EB;
+    --radius: 14px;
+    --shadow: 0 4px 24px rgba(124,58,237,0.08);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 1.5rem;
+  }
+  .nav-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px; gap: 1rem;
+  }
+  .logo {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: 1.2rem;
+    color: var(--primary); text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo svg { width: 28px; height: 28px; }
+  .nav-tabs {
+    display: flex; gap: 0; flex-wrap: wrap;
+    background: var(--primary-light);
+    border-radius: 12px;
+    padding: 4px;
+  }
+  .nav-tab {
+    padding: 7px 16px; border-radius: 9px;
+    font-size: 13px; font-weight: 500;
+    color: var(--primary); cursor: pointer;
+    border: none; background: transparent;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .nav-tab:hover {
+    background: rgba(255,255,255,0.6);
+    color: var(--primary);
+  }
+  .nav-tab.active {
+    background: #ffffff;
+    color: var(--primary);
+    font-weight: 600;
+    box-shadow: 0 1px 6px rgba(124,58,237,0.10);
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+    padding: 3.5rem 1.5rem 4rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+  .hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 700; color: #fff;
+    line-height: 1.2; margin-bottom: 0.75rem;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem; margin-bottom: 2rem;
+  }
+
+  /* DOWNLOADER BOX */
+  .dl-box {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    display: flex; gap: 10px; align-items: center;
+  }
+  .dl-input {
+    flex: 1;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .dl-input:focus { border-color: var(--primary); }
+  .dl-input::placeholder { color: #9CA3AF; }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff; border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px; cursor: pointer;
+    font-size: 0.95rem; font-weight: 600;
+    font-family: 'Sora', sans-serif;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-clear {
+    background: #F3F4F6; color: var(--text-muted);
+    border: none; padding: 0.75rem 1rem;
+    border-radius: 10px; cursor: pointer;
+    font-size: 0.85rem; font-family: 'Inter', sans-serif;
+    transition: background 0.15s;
+  }
+  .btn-clear:hover { background: #E5E7EB; }
+
+  /* AD BANNER TOP */
+  .ad-banner {
+    max-width: 900px; margin: 1.5rem auto;
+    padding: 0 1.5rem;
+  }
+  .ad-slot {
+    background: #F3F4F6;
+    border: 1px dashed #D1D5DB;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #9CA3AF; font-size: 12px;
+    min-height: 90px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .ad-slot.tall { min-height: 250px; }
+
+  /* RESULT SECTION */
+  .result-section {
+    max-width: 420px; margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* 9:16 Reel Preview Card */
+  .reel-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    box-shadow: 0 8px 40px rgba(124,58,237,0.13);
+  }
+  .reel-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #111;
+    overflow: hidden;
+  }
+  .reel-preview img,
+  .reel-preview video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .reel-preview video { background: #000; }
+  .dl-progress {
+    display: none; margin-top: 0.5rem;
+    font-size: 0.8rem; color: var(--primary); text-align: center;
+  }
+  .btn-dl.loading-dl {
+    background: #6B7280; cursor: not-allowed;
+  }
+  .reel-info {
+    padding: 0.85rem 1rem 1rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .reel-info-text { text-align: center; }
+  .reel-info-text h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+  .reel-info-text p { font-size: 0.78rem; color: var(--text-muted); }
+  .btn-dl {
+    background: #1877F2; color: #fff;
+    border: none; padding: 0.85rem;
+    border-radius: 10px; cursor: pointer;
+    font-size: 1rem; font-weight: 700;
+    text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.15s;
+    width: 100%;
+    box-shadow: 0 2px 12px rgba(24,119,242,0.25);
+  }
+  .btn-dl:hover { background: #1464d8; }
+  .dots-tip {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #9CA3AF;
+    padding: 0.5rem 0 0.75rem;
+  }
+  .dots-tip span {
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+
+  /* Empty placeholder before search */
+  .reel-placeholder {
+    max-width: 420px; margin: 1.5rem auto 0; padding: 0 1.5rem;
+  }
+  .reel-placeholder-inner {
+    width: 100%; aspect-ratio: 9 / 16;
+    background: #F3F4F6; border: 2px dashed #D1D5DB;
+    border-radius: 20px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.75rem; color: #9CA3AF;
+  }
+  .reel-placeholder-inner p { font-size: 1.1rem; font-weight: 600; text-align: center; line-height: 1.5; padding: 0 1rem; color: #7C3AED; letter-spacing: 0.3px; }
+
+
+  /* MAIN CONTENT */
+  .main { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+  /* HOW TO */
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.35rem; font-weight: 700;
+    color: var(--text); margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem; margin-bottom: 3rem;
+  }
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .step-num {
+    width: 40px; height: 40px;
+    background: var(--primary-light);
+    color: var(--primary); font-weight: 700;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    margin: 0 auto 0.85rem; font-size: 1.1rem;
+    font-family: 'Sora', sans-serif;
+  }
+  .step-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .step-card p { font-size: 0.82rem; color: var(--text-muted); }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem; margin-bottom: 3rem;
+  }
+  .feat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem; box-shadow: var(--shadow);
+  }
+  .feat-icon {
+    font-size: 1.5rem; margin-bottom: 0.6rem;
+  }
+  .feat-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .feat-card p { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* FAQ */
+  .faq-list { margin-bottom: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--border); padding: 1.1rem 0;
+  }
+  .faq-q {
+    font-weight: 600; font-size: 0.95rem;
+    cursor: pointer; display: flex;
+    justify-content: space-between; align-items: center;
+    gap: 1rem; user-select: none;
+  }
+  .faq-q span.arrow { transition: transform 0.2s; font-size: 1rem; }
+  .faq-a {
+    font-size: 0.85rem; color: var(--text-muted);
+    margin-top: 0.6rem; display: none;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.7);
+    padding: 2.5rem 1.5rem;
+    text-align: center; font-size: 0.82rem;
+  }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-links {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 1rem; margin-bottom: 1.25rem;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { color: rgba(255,255,255,0.4); }
+</style>
 </head>
-<body class="antialiased selection:bg-igPink selection:text-white">
+<body id="top">
 
-    <div id="google_translate_element"></div>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="8" fill="#7C3AED"/>
+        <path d="M14 7v10M9 13l5 5 5-5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 20h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      One Tap Downloader
+    </a>
+    <div class="nav-tabs">
+      <a class="nav-tab active" href="#">Video</a>
+      <a class="nav-tab" href="#">Photo</a>
+      <a class="nav-tab" href="#">Reels</a>
+      <a class="nav-tab" href="#">Story</a>
+      <a class="nav-tab" href="#">IGTV</a>
+      <a class="nav-tab" href="#">Carousel</a>
+    </div>
+  </div>
+</nav>
 
-    <nav class="fixed w-full z-50 transition-all duration-300 backdrop-blur-xl bg-darkBase/80 border-b border-white/5 notranslate">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 cursor-pointer" data-aos="fade-down">
-                <div class="w-10 h-10 rounded-xl bg-gradient-ig flex items-center justify-center shadow-lg shadow-igPink/20">
-                    <i class="fa-solid fa-download text-white text-xl"></i>
-                </div>
-                <span class="text-2xl font-black tracking-wider">IG<span class="text-gradient">Core</span></span>
-            </a>
-            
-            <div class="flex items-center gap-6" data-aos="fade-down" data-aos-delay="100">
-                <div class="hidden md:flex gap-8 font-semibold text-gray-400 text-sm">
-                    <a href="#features" class="hover:text-white transition">Features</a>
-                    <a href="#how-to" class="hover:text-white transition">Tutorial</a>
-                    <a href="#faq" class="hover:text-white transition">FAQ</a>
-                </div>
-                
-                <div class="relative group">
-                    <button class="flex items-center gap-2 glass-box px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/5 transition">
-                        <i class="fa-solid fa-language text-igPink"></i>
-                        <span id="current-lang">EN</span>
-                    </button>
-                    <div class="absolute right-0 top-12 w-48 max-h-80 overflow-y-auto glass-box p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100 shadow-2xl">
-                        <a href="#" onclick="changeLanguage('en')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">English</a>
-                        <a href="#" onclick="changeLanguage('hi')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">हिन्दी (Hindi)</a>
-                        <a href="#" onclick="changeLanguage('gu')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">ગુજરાતી (Gujarati)</a>
-                        <a href="#" onclick="changeLanguage('es')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Español (Spanish)</a>
-                        <a href="#" onclick="changeLanguage('fr')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Français (French)</a>
-                        <a href="#" onclick="changeLanguage('de')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Deutsch (German)</a>
-                        <a href="#" onclick="changeLanguage('zh-CN')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">中文 (Chinese)</a>
-                        <a href="#" onclick="changeLanguage('ja')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">日本語 (Japanese)</a>
-                        <a href="#" onclick="changeLanguage('ar')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">العربية (Arabic)</a>
-                        <a href="#" onclick="changeLanguage('pt')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Português (Portuguese)</a>
-                        <a href="#" onclick="changeLanguage('ru')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Русский (Russian)</a>
-                        <a href="#" onclick="changeLanguage('id')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">Bahasa Indonesia</a>
-                        <a href="#" onclick="changeLanguage('bn')" class="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg">বাংলা (Bengali)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Instagram Downloader</h1>
+    <p>Download Instagram Videos, Reels, Photos, IGTV & Albums — free, fast, no login needed.</p>
+    <div class="dl-box">
+      <input class="dl-input" id="urlInput" type="text" placeholder="Paste Instagram link here..." />
+      <button class="btn-clear" onclick="clearInput()">Clear</button>
+      <button class="btn-primary" onclick="startDownload()">⬇ Download</button>
+    </div>
+  </div>
+</section>
 
-    <section class="relative min-h-[90vh] flex flex-col justify-center items-center pt-20 px-4">
-        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-igPurple/20 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-igOrange/20 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- AD SLOT 1 (Top Banner) -->
+<div class="ad-banner">
+  <div class="ad-slot">
+    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+    <ins class="eas6a97888e6" data-zoneid="5953004"></ins> 
+    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+  </div>
+</div>
 
-        <div class="max-w-4xl mx-auto text-center z-10 w-full mt-10">
-            <div data-aos="zoom-in" data-aos-duration="1000">
-                <span class="inline-block py-1 px-4 rounded-full glass-box text-igPink text-sm font-bold tracking-widest uppercase mb-6 border-igPink/30">
-                    <i class="fa-solid fa-bolt mr-2"></i> Ultra-Fast Engine
-                </span>
-            </div>
-            
-            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight tracking-tighter" data-aos="fade-up" data-aos-delay="200">
-                Save The <br/> <span class="text-gradient">Impossible.</span>
-            </h1>
-            
-            <p class="text-xl md:text-2xl text-gray-400 font-light mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="400">
-                Paste any Instagram link below. We extract the highest quality 4K/HD video directly to your local storage.
-            </p>
+<div class="reel-placeholder" id="reelPlaceholder">
+  <div class="reel-placeholder-inner">
+    <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#C4B5FD" stroke-width="1.2">
+      <rect x="2" y="3" width="20" height="18" rx="3"/>
+      <path d="M10 8l6 4-6 4V8z"/>
+    </svg>
+    <p>Reels Preview</p>
+  </div>
+</div>
 
-            <div data-aos="fade-up" data-aos-delay="600" class="w-full max-w-3xl mx-auto">
-                <form id="downloadForm" class="glass-box p-2 md:p-3 flex flex-col md:flex-row gap-3 glow-effect transition-all duration-500 relative">
-                    <div class="flex-1 flex items-center relative">
-                        <i class="fa-brands fa-instagram absolute left-6 text-2xl text-gray-500"></i>
-                        <input 
-                            type="url" 
-                            id="ig_url_input"
-                            placeholder="Paste Instagram Reel, Video, or Photo link..." 
-                            required
-                            class="w-full bg-transparent border-none text-white px-16 py-5 text-lg outline-none placeholder-gray-600 font-medium notranslate"
-                        >
-                    </div>
-                    <button type="submit" id="submitBtn" class="bg-gradient-ig px-10 py-5 rounded-xl font-bold text-lg hover:scale-[1.02] active:scale-95 transition-transform flex items-center justify-center gap-3 shadow-lg shadow-igPink/20 w-full md:w-auto">
-                        <span id="btnText">Download</span>
-                        <i id="btnIcon" class="fa-solid fa-arrow-down"></i>
-                    </button>
-                </form>
-                <p class="text-sm text-gray-600 mt-4 font-medium"><i class="fa-solid fa-lock mr-1"></i> 100% Secure. No login required.</p>
-                
-                <div class="mt-8 w-full flex justify-center items-center min-h-[100px] overflow-visible">
-                    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
-                    <ins class="eas6a97888e37" data-zoneid="6044510"></ins> 
-                    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-                </div>
+<div class="result-section" style="display:none" id="resultSection">
+  <div class="loading" id="loading" style="display:none">
+    <div class="spinner"></div>
+    <p>Fetching your content...</p>
+  </div>
+  <div class="error-msg" id="errorMsg"></div>
+  <div id="results"></div>
+</div>
 
-                <div id="result-container" class="mt-8 hidden w-full text-left"></div>
-            </div>
-        </div>
-    </section>
+<main class="main">
 
-    <section class="py-16 border-y border-white/5 bg-darkCard/30">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-4xl font-black text-white mb-2">2M+</h3>
-                <p class="text-gray-500 font-semibold uppercase tracking-widest text-sm">Downloads</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-4xl font-black text-white mb-2">0.5s</h3>
-                <p class="text-gray-500 font-semibold uppercase tracking-widest text-sm">Processing Time</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="300">
-                <h3 class="text-4xl font-black text-white mb-2">100%</h3>
-                <p class="text-gray-500 font-semibold uppercase tracking-widest text-sm">Free Forever</p>
-            </div>
-            <div data-aos="fade-up" data-aos-delay="400">
-                <h3 class="text-4xl font-black text-white mb-2">4K</h3>
-                <p class="text-gray-500 font-semibold uppercase tracking-widest text-sm">Supported Quality</p>
-            </div>
-        </div>
-    </section>
+  <h2 class="section-title">How to Download from Instagram?</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Copy the URL</h3>
+      <p>Open Instagram, find your video/reel/photo and copy the post link.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Paste the Link</h3>
+      <p>Come back here, paste the link into the box above and click Download.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Save to Device</h3>
+      <p>Pick your preferred quality and save the file directly to your device.</p>
+    </div>
+  </div>
 
-    <section id="features" class="py-32 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-5xl font-black mb-6">Everything You Need.</h2>
-                <p class="text-xl text-gray-400">One powerful tool to download all forms of Instagram media.</p>
-            </div>
+  <!-- AD SLOT 2 (Middle Banner) -->
+  <div style="margin: 0 0 2.5rem;">
+    <div class="ad-slot tall">
+      <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+      <ins class="eas6a97888e6" data-zoneid="5953004"></ins> 
+      <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+  </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass-box p-10 hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 rounded-full bg-igPink/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-clapperboard text-3xl text-igPink"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Reels Downloader</h3>
-                    <p class="text-gray-400 leading-relaxed">Download viral Instagram Reels with audio in crisp 1080p. Perfect for offline viewing or reposting.</p>
-                </div>
-                <div class="glass-box p-10 hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 rounded-full bg-igOrange/10 flex items-center justify-center mb-6">
-                        <i class="fa-regular fa-images text-3xl text-igOrange"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Photo & Carousel</h3>
-                    <p class="text-gray-400 leading-relaxed">Save single pictures or multi-photo carousels without losing any pixel density or original colors.</p>
-                </div>
-                <div class="glass-box p-10 hover:-translate-y-2 transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 rounded-full bg-igPurple/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-circle-notch text-3xl text-igPurple"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Stories Saver</h3>
-                    <p class="text-gray-400 leading-relaxed">Download 24-hour stories and highlights straight to your gallery before they disappear forever.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <h2 class="section-title">Why Choose One Tap Downloader?</h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <h3>Lightning Fast</h3>
+      <p>High-speed servers for instant downloads every time.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔒</div>
+      <h3>100% Private</h3>
+      <p>No login, no tracking. Your links are never stored.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📱</div>
+      <h3>All Devices</h3>
+      <p>Works on mobile, tablet, and desktop browsers.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎯</div>
+      <h3>HD Quality</h3>
+      <p>Download in original quality — no watermarks, no compression.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">♾️</div>
+      <h3>No Limits</h3>
+      <p>Download as many files as you want, completely free.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎬</div>
+      <h3>All Formats</h3>
+      <p>Videos, Reels, Photos, IGTV, Carousels — all supported.</p>
+    </div>
+  </div>
 
-    <section class="py-24 bg-darkCard/40 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-12 text-gray-300" data-aos="fade-up">Works Seamlessly Across All Platforms</h2>
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60">
-                <div class="flex flex-col items-center gap-3 hover:opacity-100 transition duration-300" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fa-brands fa-apple text-5xl"></i>
-                    <span class="font-semibold tracking-wide">iOS & Mac</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 hover:opacity-100 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fa-brands fa-android text-5xl"></i>
-                    <span class="font-semibold tracking-wide">Android</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 hover:opacity-100 transition duration-300" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fa-brands fa-windows text-5xl"></i>
-                    <span class="font-semibold tracking-wide">Windows PC</span>
-                </div>
-                <div class="flex flex-col items-center gap-3 hover:opacity-100 transition duration-300" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fa-brands fa-chrome text-5xl"></i>
-                    <span class="font-semibold tracking-wide">Any Browser</span>
-                </div>
-            </div>
-        </div>
-    </section>
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is One Tap Downloader? <span class="arrow">▾</span></div>
+      <div class="faq-a">One Tap Downloader is a free browser-based tool to save public Instagram content — videos, photos, Reels, Stories, IGTV and carousels — directly to your device. No app install needed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to create an account? <span class="arrow">▾</span></div>
+      <div class="faq-a">No. Just paste the Instagram link and hit Download. No registration, no Instagram login, and no personal data is collected.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What formats are available? <span class="arrow">▾</span></div>
+      <div class="faq-a">Videos are saved as MP4 in HD quality (up to 720p). Photos are saved as JPG at the original Instagram resolution (up to 1080×1350px). No watermarks are added.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I download from private accounts? <span class="arrow">▾</span></div>
+      <div class="faq-a">No. Only public posts are accessible. We respect user privacy and cannot fetch content that isn't publicly visible.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is there a download limit? <span class="arrow">▾</span></div>
+      <div class="faq-a">None at all. Download as many files as you need — our servers have no daily caps.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Which browsers and devices are supported? <span class="arrow">▾</span></div>
+      <div class="faq-a">Any modern browser on Windows, macOS, Android, or iOS — including Chrome, Safari, Firefox, Edge, and Brave.</div>
+    </div>
+  </div>
 
-    <section id="how-to" class="py-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24" data-aos="fade-down">
-                <h2 class="text-5xl font-black mb-6">How It Works</h2>
-                <p class="text-xl text-gray-400">Three ridiculously easy steps.</p>
-            </div>
+  <!-- AD SLOT 3 (Bottom Banner) -->
+  <div style="margin-bottom: 2rem;">
+    <div class="ad-slot">
+      <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+      <ins class="eas6a97888e6" data-zoneid="5953004"></ins> 
+      <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    </div>
+  </div>
 
-            <div class="space-y-32">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2" data-aos="fade-right">
-                        <div class="text-8xl font-black text-white/5 mb-[-40px]">01</div>
-                        <h3 class="text-4xl font-bold mb-6">Copy The Link</h3>
-                        <p class="text-xl text-gray-400 leading-relaxed">Open your Instagram app, find the video or photo you love. Tap the share icon or three dots, and hit <strong class="text-white">"Copy Link"</strong>.</p>
-                    </div>
-                    <div class="md:w-1/2 w-full h-80 glass-box rounded-3xl flex items-center justify-center relative overflow-hidden" data-aos="fade-left">
-                        <i class="fa-solid fa-copy text-7xl text-gray-600 absolute"></i>
-                    </div>
-                </div>
+</main>
 
-                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                    <div class="md:w-1/2" data-aos="fade-left">
-                        <div class="text-8xl font-black text-white/5 mb-[-40px]">02</div>
-                        <h3 class="text-4xl font-bold mb-6">Paste Into Core</h3>
-                        <p class="text-xl text-gray-400 leading-relaxed">Come right back to our website. Tap on the massive input box at the top of the page and paste the link you just copied.</p>
-                    </div>
-                    <div class="md:w-1/2 w-full h-80 glass-box rounded-3xl flex items-center justify-center relative overflow-hidden" data-aos="fade-right">
-                        <i class="fa-solid fa-paste text-7xl text-gray-600 absolute"></i>
-                    </div>
-                </div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#top">Home</a>
+      <a href="about.html">About</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="dmca.html">DMCA</a>
+      <a href="mailto:onetapbusinesssolution@gmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024–2026 One Tap Downloader. All rights reserved. | Not affiliated with Instagram or Meta.</p>
+  </div>
+</footer>
 
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2" data-aos="fade-right">
-                        <div class="text-8xl font-black text-white/5 mb-[-40px]">03</div>
-                        <h3 class="text-4xl font-bold mb-6">Hit Download</h3>
-                        <p class="text-xl text-gray-400 leading-relaxed">Click the magical download button. Our servers will instantly process the file and save the HD version directly to your device.</p>
-                    </div>
-                    <div class="md:w-1/2 w-full h-80 bg-gradient-ig rounded-3xl flex items-center justify-center relative overflow-hidden shadow-2xl shadow-igPink/20" data-aos="fade-left">
-                        <i class="fa-solid fa-cloud-arrow-down text-7xl text-white absolute animate-bounce"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1E1B4B;color:#fff;padding:1rem 1.5rem;z-index:9999;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;box-shadow:0 -4px 20px rgba(0,0,0,0.2)">
+  <p style="font-size:0.85rem;margin:0;flex:1;min-width:200px">
+    🍪 We use cookies to improve your experience and show relevant ads. By using this site, you agree to our
+    <a href="privacy-policy.html" style="color:#C4B5FD;text-decoration:underline">Privacy Policy</a>.
+  </p>
+  <div style="display:flex;gap:0.75rem;flex-shrink:0">
+    <button onclick="acceptCookies()" style="background:#7C3AED;color:#fff;border:none;padding:0.55rem 1.25rem;border-radius:8px;cursor:pointer;font-size:0.85rem;font-weight:600">Accept All</button>
+    <button onclick="rejectCookies()" style="background:transparent;color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.3);padding:0.55rem 1.25rem;border-radius:8px;cursor:pointer;font-size:0.85rem">Reject</button>
+  </div>
+</div>
 
-    <section class="py-32 bg-darkCard/20 border-y border-white/5">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="inline-block py-1 px-4 rounded-full glass-box text-igOrange text-sm font-bold tracking-widest uppercase mb-4 border-igOrange/30">Why Us?</span>
-                <h2 class="text-5xl font-black">IG Core vs. Others</h2>
-            </div>
+<script>
+  function clearInput() {
+    document.getElementById('urlInput').value = '';
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('resultSection').style.display = 'none';
+    document.getElementById('reelPlaceholder').style.display = 'block';
+  }
 
-            <div class="glass-box overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="bg-white/5 border-b border-white/10">
-                            <th class="p-6 text-gray-400 font-semibold text-lg">Feature</th>
-                            <th class="p-6 font-black text-white text-xl border-l border-white/10 bg-white/5"><span class="text-gradient">IG Core</span></th>
-                            <th class="p-6 text-gray-500 font-semibold text-lg border-l border-white/10">Other Tools</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="p-6 text-gray-300 font-medium">Download Speed</td>
-                            <td class="p-6 text-green-400 font-bold border-l border-white/10 bg-white/5"><i class="fa-solid fa-bolt mr-2"></i> Instant</td>
-                            <td class="p-6 text-gray-500 border-l border-white/10">Slow / Delayed</td>
-                        </tr>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="p-6 text-gray-300 font-medium">Video Quality</td>
-                            <td class="p-6 text-white font-bold border-l border-white/10 bg-white/5"><i class="fa-solid fa-check text-green-400 mr-2"></i> Original (HD/4K)</td>
-                            <td class="p-6 text-gray-500 border-l border-white/10"><i class="fa-solid fa-xmark text-red-500/50 mr-2"></i> Compressed</td>
-                        </tr>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="p-6 text-gray-300 font-medium">Login Required</td>
-                            <td class="p-6 text-white font-bold border-l border-white/10 bg-white/5"><i class="fa-solid fa-check text-green-400 mr-2"></i> No Login Needed</td>
-                            <td class="p-6 text-gray-500 border-l border-white/10"><i class="fa-solid fa-xmark text-red-500/50 mr-2"></i> Yes (Unsafe)</td>
-                        </tr>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="p-6 text-gray-300 font-medium">Daily Limits</td>
-                            <td class="p-6 text-white font-bold border-l border-white/10 bg-white/5"><i class="fa-solid fa-check text-green-400 mr-2"></i> Unlimited</td>
-                            <td class="p-6 text-gray-500 border-l border-white/10"><i class="fa-solid fa-xmark text-red-500/50 mr-2"></i> Restricted</td>
-                        </tr>
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="p-6 text-gray-300 font-medium">Annoying Popups</td>
-                            <td class="p-6 text-white font-bold border-l border-white/10 bg-white/5"><i class="fa-solid fa-check text-green-400 mr-2"></i> 100% Ad-Free UI</td>
-                            <td class="p-6 text-gray-500 border-l border-white/10"><i class="fa-solid fa-xmark text-red-500/50 mr-2"></i> Full of Ads</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
 
-    <section class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-5xl font-black mb-6">Loved by Creators.</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-box p-8" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="flex text-igOrange mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-300 mb-6">"Fastest downloader I've ever used. The fact that it doesn't compress the reels makes it my daily driver."</p>
-                    <p class="font-bold text-white">— Rahul T.</p>
-                </div>
-                <div class="glass-box p-8" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="flex text-igOrange mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-300 mb-6">"No annoying popups, no fake buttons. Just paste and download. Absolutely brilliant interface."</p>
-                    <p class="font-bold text-white">— Sarah M.</p>
-                </div>
-                <div class="glass-box p-8" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="flex text-igOrange mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-gray-300 mb-6">"I use this to save references for my video editing projects. The 1080p quality is consistently perfect."</p>
-                    <p class="font-bold text-white">— Dev K.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  function showError(msg) {
+    var e = document.getElementById('errorMsg');
+    e.textContent = msg;
+    e.style.display = 'block';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('resultSection').style.display = 'block';
+    document.getElementById('reelPlaceholder').style.display = 'none';
+  }
 
-    <section id="faq" class="py-32 bg-darkCard/40 border-t border-white/5">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-5xl font-black mb-6">Got Questions?</h2>
-            </div>
+  // ── API Configs — Primary + Fallback ──
+  var RAPID_KEY = '7064e7c400msh734ad9811592422p11520ajsn9c2f190287a1';
 
-            <div class="space-y-4">
-                <div class="glass-box p-6 md:p-8 cursor-pointer hover:border-igPink/30 transition-colors" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-xl font-bold mb-2">Do I need to install an app?</h3>
-                    <p class="text-gray-400">No! IG Core is a web-based tool. It works entirely within your browser on Android, iOS, Windows, and Mac.</p>
-                </div>
-                <div class="glass-box p-6 md:p-8 cursor-pointer hover:border-igOrange/30 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-xl font-bold mb-2">Can I download private videos?</h3>
-                    <p class="text-gray-400">We respect user privacy. Currently, our system only allows downloading from public Instagram accounts.</p>
-                </div>
-                <div class="glass-box p-6 md:p-8 cursor-pointer hover:border-igPurple/30 transition-colors" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-xl font-bold mb-2">Is there a download limit?</h3>
-                    <p class="text-gray-400">Zero limits. You can download 1 video or 1,000 videos a day. Our servers are built to handle heavy traffic.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-40 relative flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-ig opacity-10"></div>
-        <div class="max-w-3xl mx-auto text-center relative z-10 px-6" data-aos="zoom-in">
-            <h2 class="text-6xl md:text-7xl font-black mb-8">Ready to Start?</h2>
-            <p class="text-2xl text-gray-300 mb-10">Scroll back up and paste your link.</p>
-            <a href="#" onclick="window.scrollTo(0,0);" class="inline-block bg-white text-black font-black text-xl px-12 py-6 rounded-full hover:scale-105 transition-transform">
-                Go to Downloader <i class="fa-solid fa-arrow-up ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/5 bg-darkBase py-12 notranslate">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
-            <div class="flex items-center gap-2 text-white">
-                <i class="fa-solid fa-download text-igPink text-xl"></i>
-                <span class="text-xl font-black tracking-wider">IG<span class="text-gray-300">Core</span></span>
-            </div>
-            <div>&copy; 2026 IG Core. All rights reserved.</div>
-            
-            <div class="flex flex-wrap justify-center gap-4 font-semibold text-gray-400">
-                <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
-                <a href="terms.html" class="hover:text-white transition">Terms & Conditions</a>
-                <a href="dmca.html" class="hover:text-white transition">DMCA</a>
-                <a href="about.html" class="hover:text-white transition">About Us</a>
-                <a href="contact.html" class="hover:text-white transition">Contact</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    
-    <script>
-        // 1. Initialize AOS Animations
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
-
-        // 2. Initialize Google Translate
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-
-        // 3. Change Language Function
-        function changeLanguage(langCode) {
-            document.getElementById('current-lang').innerText = langCode.toUpperCase();
-            var selectField = document.querySelector(".goog-te-combo");
-            if (selectField) {
-                selectField.value = langCode;
-                selectField.dispatchEvent(new Event('change'));
-            } else {
-                console.error("Google Translate module is not loaded yet.");
-            }
-        }
-
-        // 4. FastAPI Backend Download Logic (AJAX)
-        // Live server API path yahan set kiya hua hai
-        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            const urlInput = document.getElementById('ig_url_input').value;
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
-            const btnIcon = document.getElementById('btnIcon');
-            const resultContainer = document.getElementById('result-container');
-
-            // Show Loading State
-            submitBtn.disabled = true;
-            btnText.innerText = "Processing...";
-            btnIcon.className = "fa-solid fa-spinner fa-spin";
-            resultContainer.classList.add('hidden');
-            resultContainer.innerHTML = '';
-
-            try {
-                // Fetching from your actual Railway live link
-                const response = await fetch(`https://instafatchcom-production.up.railway.app/api/download?url=${encodeURIComponent(urlInput)}`);
-                const data = await response.json();
-
-                if (response.ok && data.status === "success") {
-                    // Success UI
-                    resultContainer.innerHTML = `
-                        <div class="glass-box p-6 md:p-8 border border-green-500/30 shadow-lg shadow-green-500/10 mt-6 rounded-2xl flex flex-col items-center animate-[fadeInUp_0.5s_ease-out]">
-                            <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4 text-green-400">
-                                <i class="fa-solid fa-circle-check text-3xl"></i>
-                            </div>
-                            <h3 class="text-white font-bold text-lg text-center mb-6 px-4 truncate w-full max-w-sm" title="${data.title}">${data.title}</h3>
-                            <a href="${data.download_url}" target="_blank" rel="noopener noreferrer" class="inline-flex w-full md:w-auto items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-10 py-4 rounded-xl font-bold transition-all hover:scale-105 shadow-xl shadow-green-500/20">
-                                <i class="fa-solid fa-download text-xl"></i> Download Video
-                            </a>
-                            <p class="text-xs text-gray-400 mt-4 text-center">Note: If the video starts playing in a new tab, click the 3-dots icon on the player and select "Download".</p>
-                        </div>
-                    `;
-                    resultContainer.classList.remove('hidden');
-                } else {
-                    alert("Error: " + (data.detail || "Video not found or account is private!"));
-                }
-            } catch (error) {
-                alert("Server connection failed. Please ensure your backend is running.");
-                console.error("Fetch error:", error);
-            } finally {
-                // Reset Button
-                submitBtn.disabled = false;
-                btnText.innerText = "Download";
-                btnIcon.className = "fa-solid fa-arrow-down";
-            }
+  var APIS = [
+    {
+      // API 1 — Primary (GET)
+      call: async function(igUrl) {
+        var res = await fetch('https://instagram-downloader-download-instagram-stories-videos4.p.rapidapi.com/convert?url=' + encodeURIComponent(igUrl), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': RAPID_KEY,
+            'x-rapidapi-host': 'instagram-downloader-download-instagram-stories-videos4.p.rapidapi.com'
+          }
         });
-    </script>
+        if (!res.ok) throw new Error('API1 error: ' + res.status);
+        return await res.json();
+      }
+    },
+    {
+      // API 2 — Fallback (POST) — Social Download All In One
+      call: async function(igUrl) {
+        var res = await fetch('https://social-download-all-in-one.p.rapidapi.com/v1/social/autolink', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-rapidapi-key': RAPID_KEY,
+            'x-rapidapi-host': 'social-download-all-in-one.p.rapidapi.com'
+          },
+          body: JSON.stringify({ url: igUrl })
+        });
+        if (!res.ok) throw new Error('API2 error: ' + res.status);
+        var data = await res.json();
+        // Normalize API2 response to match renderResults format
+        var medias = data.medias || data.media || data.links || [];
+        if (!medias.length && data.url) medias = [{ url: data.url, quality: 'HD' }];
+        var items = medias.map(function(m) {
+          return { url: m.url || m.link || '', thumb: data.thumbnail || data.thumb || '' };
+        });
+        return items;
+      }
+    }
+  ];
+
+  async function tryAPI(igUrl, apiIndex) {
+    return await APIS[apiIndex].call(igUrl);
+  }
+
+  async function startDownload() {
+    var url = document.getElementById('urlInput').value.trim();
+    if (!url) { showError('Please paste an Instagram link first.'); return; }
+    if (url.indexOf('instagram.com') === -1) { showError('Please enter a valid Instagram URL.'); return; }
+
+    document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('reelPlaceholder').style.display = 'none';
+    document.getElementById('resultSection').style.display = 'block';
+    document.getElementById('loading').style.display = 'block';
+
+    var lastErr = '';
+    for (var i = 0; i < APIS.length; i++) {
+      try {
+        var data = await tryAPI(url, i);
+        document.getElementById('loading').style.display = 'none';
+        renderResults(data);
+        return;
+      } catch (err) {
+        lastErr = err.message;
+        console.warn('API ' + (i+1) + ' failed:', err.message);
+        // try next API
+      }
+    }
+    // All APIs failed
+    showError('Could not fetch. Make sure the post is public. (' + lastErr + ')');
+  }
+
+  function renderResults(data) {
+    var results = document.getElementById('results');
+    var items = [];
+
+    if (Array.isArray(data)) {
+      items = data;
+    } else if (data.media && Array.isArray(data.media)) {
+      items = data.media;
+    } else if (data.result && Array.isArray(data.result)) {
+      items = data.result;
+    } else if (data.data && Array.isArray(data.data)) {
+      items = data.data;
+    } else {
+      var u = data.url || data.video_url || data.download_url || '';
+      var t = data.thumb || data.thumbnail || data.thumbnail_url || '';
+      if (u) items = [{url: u, thumb: t}];
+    }
+
+    if (!items.length) {
+      showError('Download link nahi mila. Response: ' + JSON.stringify(data).substring(0, 200));
+      return;
+    }
+
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+      var item    = items[i];
+      var fileUrl = item.url || item.video_url || item.download_url || '';
+      var thumb   = item.thumb || item.thumbnail || item.thumbnail_url || '';
+      var isVid   = item.type === 'video'
+                    || fileUrl.indexOf('.mp4') !== -1
+                    || (fileUrl.indexOf('.jpg') === -1 && fileUrl.indexOf('.jpeg') === -1 && fileUrl.indexOf('.png') === -1);
+      var label   = isVid ? 'Video' : 'Photo';
+      var ext     = isVid ? 'mp4' : 'jpg';
+      var fname   = 'onetap_' + (i + 1) + '.' + ext;
+
+      html += '<div class="reel-card">';
+      html += '<div class="reel-preview">';
+      if (isVid && fileUrl) {
+        html += '<video src="' + fileUrl + '" poster="' + thumb + '" controls playsinline preload="metadata"></video>';
+      } else if (thumb) {
+        html += '<img src="' + thumb + '" alt="Preview">';
+      } else {
+        html += '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:.85rem">Preview unavailable</div>';
+      }
+      html += '</div>';
+      html += '<div class="reel-info">';
+      html += '<div class="reel-info-text"><h3>Instagram ' + label + (items.length > 1 ? ' ' + (i + 1) : '') + '</h3>';
+      html += '<p>HD Quality &middot; ' + ext.toUpperCase() + ' &middot; No watermark</p></div>';
+      html += '<button class="btn-dl" onclick="window.open(\'' + fileUrl + '\', \'_blank\')"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg> Download</button>';
+      html += '<div class="dots-tip"><span>&#8942; 3 dots &rarr; Save / Download video</span></div>';
+      html += '</div>';
+      
+      html += '<div class="dl-progress" id="dlprog' + i + '" style="display:none;text-align:center;padding:.5rem;font-size:.8rem;color:#7C3AED">Downloading...</div>';
+      html += '</div>';
+    }
+    results.innerHTML = html;
+  }
+
+  // Nav tabs
+  document.querySelectorAll('.nav-tab').forEach(function(tab) {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+
+  // Cookie consent
+  function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookieBanner').style.display = 'none';
+    loadGA();
+  }
+  function rejectCookies() {
+    localStorage.setItem('cookieConsent', 'rejected');
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+  function loadGA() {
+    var s = document.createElement('script');
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async = true;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    var c = localStorage.getItem('cookieConsent');
+    if (!c) {
+      document.getElementById('cookieBanner').style.display = 'flex';
+    } else if (c === 'accepted') {
+      loadGA();
+    }
+  });
+</script>
 </body>
 </html>
